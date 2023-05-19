@@ -1,17 +1,16 @@
 package org.example;
 
 public class ObjectTreeTest {
+    public static int[] array={5,2,3,6,8,3,1};
     public static void main(String[] args) {
         createTest();
     }
 
     public static void createTest() {
         ObjectTree tree = new ObjectTree(2);
-        tree.add(new ObjectTreeItem(2, new Payload(11)), tree.root);
-        tree.add(new ObjectTreeItem(2, new Payload(12)), tree.root);
-        tree.add(new ObjectTreeItem(2, new Payload(13)), tree.root);
-        tree.add(new ObjectTreeItem(2, new Payload(14)), tree.root);
-        tree.add(new ObjectTreeItem(2, new Payload(15)), tree.root);
-        tree.add(new ObjectTreeItem(2, new Payload(16)), tree.root);
+        for (int i = 0; i < array.length; i++) {
+            tree.add(new ObjectTreeItem(2, new Payload(array[i])), tree.root);
+        }
+        System.out.println(tree.searchItem(new ObjectTreeItem(2, new Payload(8)),tree.root));
     }
 }
