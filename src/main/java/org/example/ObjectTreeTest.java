@@ -11,6 +11,6 @@ public class ObjectTreeTest {
         for (int i = 0; i < array.length; i++) {
             tree.add(new ObjectTreeItem(2, new Payload(array[i])), tree.root);
         }
-        System.out.println(tree.searchItem(new ObjectTreeItem(2, new Payload(8)),tree.root));
+        System.out.println(tree.searchItem(new ObjectTreeItem(2, new Payload(0)),tree.root));
     }
 }

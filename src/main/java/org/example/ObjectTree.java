@@ -24,22 +24,22 @@ public class ObjectTree {
         }
         int i = 0;
         if (item.payload.sum < root1.payload.sum) {
-            if (root1.items[i] != null) {
-                addItem(item, root1.items[i]);
-            } else {
-                root1.items[i] = item;
-                startAdding = false;
-            }
+            extracted(item, root1, i);
         } else {
             i++;
-            if (root1.items[i] != null) {
-                addItem(item, root1.items[i]);
-            } else {
-                root1.items[i] = item;
-                startAdding = false;
-            }
+            extracted(item, root1, i);
         }
+
         count++;
+    }
+
+    private void extracted(ObjectTreeItem item, ObjectTreeItem root1, int i) {
+        if (root1.items[i] != null) {
+            addItem(item, root1.items[i]);
+        } else {
+            root1.items[i] = item;
+            startAdding = false;
+        }
     }
 
     public boolean searchItem(ObjectTreeItem item, ObjectTreeItem root2) {
@@ -47,14 +47,17 @@ public class ObjectTree {
         if (item.payload.sum == root2.payload.sum) {
             return true;
         } else if (item.payload.sum < root2.payload.sum) {
-            if(root2.items[i]!=null&&searchItem(item, root2.items[i])) {
-                return true;
-            }
+            if (extracted2(item, root2, i)) return true;
         }else {
             i++;
-            if(root2.items[i]!=null&&searchItem(item,root2.items[i])){
-                return true;
-            }
+            if (extracted2(item, root2, i)) return true;
+        }
+        return false;
+    }
+
+    private boolean extracted2(ObjectTreeItem item, ObjectTreeItem root2, int i) {
+        if(root2.items[i]!=null&&searchItem(item, root2.items[i])) {
+            return true;
         }
         return false;
     }
